@@ -4,7 +4,7 @@
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
     "display": "fullscreen",
-    "start_url": "/GSPWA/",
+    "start_url": "/PWA-GS/",
     "icons": [
         {
             "src": "images/icons/icon-72x72.png",
