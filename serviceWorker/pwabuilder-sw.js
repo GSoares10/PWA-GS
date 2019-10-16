@@ -15,6 +15,7 @@ self.addEventListener("install",async function (event) {
         return cache.addAll([
           '/',
           '/index.html',
+          '/offline.html',
           '/js/manifest.json',
           '/serviceWorker/pwabuilder-sw-register.js',
           '/images/icons/icon-72x72.png',
@@ -30,22 +31,6 @@ self.addEventListener("install",async function (event) {
 
       return cache.add(offlineFallbackPage);
     })
-  );
-});
-
-self.addEventListener('activate',async function activator(event) {
-  event.waitUntil(caches.keys().then(function (keys) {
-    return Promise.all(keys.filter(function (key) {
-
-      return key.indexOf(CACHE) !== 0;
-    }).map(function (key) {
-
-      return caches.delete(key);
-
-    })
-    );
-
-  })
   );
 });
 
