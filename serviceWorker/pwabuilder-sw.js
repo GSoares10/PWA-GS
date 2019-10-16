@@ -8,7 +8,7 @@ self.addEventListener("install", function (event) {
   console.log("[PWA Builder] Install Event processing");
 
   event.waitUntil(
-    caches.open(CACHE).then(async function (cache) {
+    caches.open(CACHE).then(function (cache) {
       console.log("[PWA Builder] Cached offline page during install");
 
       if (offlineFallbackPage === "offline.html") {
@@ -53,7 +53,7 @@ self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    fetch(event.request).catch(async function (error) {
+    fetch(event.request).catch(function (error) {
 
       if (
         event.request.destination !== "document" ||
@@ -69,10 +69,10 @@ self.addEventListener("fetch", function (event) {
   );
 });
 
-self.addEventListener("refreshOffline", async function () {
+self.addEventListener("refreshOffline", function () {
   const offlinePageRequest = new Request(offlineFallbackPage);
 
-  return fetch(offlineFallbackPage).then(async function (response) {
+  return fetch(offlineFallbackPage).then(function (response) {
     return caches.open(CACHE).then(function (cache) {
       console.log("[PWA Builder] Offline page updated from refreshOffline event: " + response.url);
       return cache.put(offlinePageRequest, response);
