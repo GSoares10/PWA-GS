@@ -4,28 +4,18 @@ const CACHE = "pwabuilder-page";
 
 const offlineFallbackPage = "offline.html";
 
-self.addEventListener("install",async function (event) {
+self.addEventListener("install", function (event) {
   console.log("[PWA Builder] Install Event processing");
 
   event.waitUntil(
-    caches.open(CACHE).then(async function (cache) {
+    caches.open(CACHE).then(function (cache) {
       console.log("[PWA Builder] Cached offline page during install");
 
       if (offlineFallbackPage === "offline.html") {
         return cache.addAll([
           '/',
           '/index.html',
-          '/offline.html',
-          '/js/manifest.json',
-          '/serviceWorker/pwabuilder-sw-register.js',
-          '/images/icons/icon-72x72.png',
-          '/images/icons/icon-96x96.png',
-          '/images/icons/icon-128x128.png',
-          '/images/icons/icon-144x144.png',
-          '/images/icons/icon-152x152.png',
-          '/images/icons/icon-192x192.png',
-          '/images/icons/icon-384x384.png',
-          '/images/icons/icon-512x512.png',
+          '/js/manifest.json'
         ]);
       }
 
@@ -34,7 +24,8 @@ self.addEventListener("install",async function (event) {
   );
 });
 
-self.addEventListener("fetch",async function (event) {
+
+self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
@@ -64,4 +55,3 @@ self.addEventListener("refreshOffline", async function () {
     });
   });
 });
-
