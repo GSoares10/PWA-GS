@@ -28,23 +28,24 @@ self.addEventListener("install", function (event) {
 
 
 self.addEventListener("fetch", function (event) {
-  if (event.request.method !== "GET") return;
+    if (event.request.method !== "GET") return;
 
-  event.respondWith(
-    fetch(event.request).catch(function (error) {
+    event.respondWith(
+        fetch(event.request).catch(function (error) {
 
-      if (
-        event.request.destination !== "document" ||
-        event.request.mode !== "navigate"
-      ) {
-        return;
-      }
+            if (
+                event.request.destination !== "document" ||
+                event.request.mode !== "navigate"
+            ) {
+                return;
+            }
 
-      console.error("[PWA Builder] Network request Failed. Serving offline page " + error);
-      const cache = await caches.open(CACHE);
-      return cache.match(offlineFallbackPage);
-    })
-  );
+            console.error("[PWA Builder] Network request Failed. Serving offline page " + error);
+            return caches.open(CACHE).then(function (cache) {
+                return cache.match(offlineFallbackPage);
+            });
+        })
+    );
 });
 
 self.addEventListener("refreshOffline", function () {
