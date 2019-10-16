@@ -15,6 +15,7 @@ self.addEventListener("install", function (event) {
         return cache.addAll([
           '/',
           '/index.html',
+          '/offline.html',
           '/js/manifest.json'
         ]);
       }
