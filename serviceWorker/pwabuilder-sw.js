@@ -16,6 +16,7 @@ self.addEventListener("install", function (event) {
           '/',
           '/index.html',
           '/js/manifest.json',
+          '/serviceWorker/pwabuilder-sw-register.js',
           '/images/icons/icon-72x72.png',
           '/images/icons/icon-96x96.png',
           '/images/icons/icon-128x128.png',
