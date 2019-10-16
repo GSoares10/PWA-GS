@@ -13,9 +13,8 @@ self.addEventListener("install", function (event) {
 
       if (offlineFallbackPage === "index.html") {
         return cache.addAll(([
-          '/',
           '/index.html',
-          '/js/manifest.json'
+          'js/manifest.json'
         ]));
       }
 
