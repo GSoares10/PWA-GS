@@ -17,7 +17,7 @@ self.addEventListener("install", function (event) {
           './index.html',
           'offline.html',
           './js/manifest.json',
-          './serviceWorker/pwabuilder-sw.js'
+          './pwabuilder-sw.js'
         ]);
       }
 
